@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+
+	<h1>Register</h1>
+		{{ form_start(registrationForm ,{'attr':{'id':'dropZone','name':'register'}} ) }}
+            {{ form_row(registrationForm.name,{'attr':{'placeholder':'Votre nom'},'label':false}) }}
+            {{ form_row(registrationForm.email,{'attr':{'placeholder':'Votre email'},'label':false}) }}
+            {{ form_row(registrationForm.plainPassword,{'attr':{'placeholder':'Votre mot de passe'},'label':false}) }}
+            {{ form_row(registrationForm.avatar) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+            <div class="fileInfo"></div>
+            <button type="submit" class="btn">Register</button>
+		{{ form_end(registrationForm) }}
+        <script>
+        //const ajaxUrl = "{{ asset('assets/ajax/ajaxImg.php') }}";
+        const ajaxUrl = "{{ path('img_user') }}";
+        
+        </script>
+		<script src="{{ asset('assets/js/draganddrop.js') }}"></script>
+{% endblock %}
